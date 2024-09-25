@@ -1,0 +1,32 @@
+const fs = require('fs');
+const path = require('path');
+
+const postsDirectory = path.join(__dirname, 'blog/posts/');
+const outputFile = path.join(__dirname, 'blog/posts.json');
+
+fs.readdir(postsDirectory, (err, files) => {
+  if (err) {
+    console.error('Errore nella lettura della directory dei post:', err);
+    return;
+  }
+
+  const posts = files
+    .filter(file => file.endsWith('.md'))  // Solo file .md
+    .map((file, index) => {
+      const title = `Post ${index + 1}`;  // Titolo fittizio, lo puoi estrarre dal contenuto
+      const date = new Date().toISOString().split('T')[0];  // Data fittizia, cambiala con la data effettiva
+      return {
+        title: title,
+        date: date,
+        file: `/blog/posts/${file}`
+      };
+    });
+
+  fs.writeFile(outputFile, JSON.stringify(posts, null, 2), (err) => {
+    if (err) {
+      console.error('Errore nella scrittura del file posts.json:', err);
+    } else {
+      console.log('posts.json aggiornato correttamente!');
+    }
+  });
+});
