@@ -1,0 +1,14 @@
+/blog/
+  - index.html (pagina principale del blog)
+  - /posts/ (cartella per i post in formato Markdown)
+    - primo-post.md
+    - secondo-post.md
+/assets/
+  - style.css (stile del sito)
+  - posts.js (elenco dei post in JS)
+  - blog.js (gestione dinamica dei post)
+  - marked.min.js (libreria per convertire MD in HTML)
+/templates/
+  - header.html (header condiviso)
+  - footer.html (footer condiviso)
+index.html (homepage principale)
